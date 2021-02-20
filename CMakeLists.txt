@@ -19,7 +19,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(pico-ssd1306 main.cpp ssd1306.h ssd1306.cpp )
+add_executable(pico-ssd1306 main.cpp ssd1306.h ssd1306.cpp image_common.h data/blink.h data/blink.cpp)
 
 pico_set_program_name(pico-ssd1306 "pico-ssd1306")
 pico_set_program_version(pico-ssd1306 "0.1")

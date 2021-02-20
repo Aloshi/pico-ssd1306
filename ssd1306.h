@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include "hardware/spi.h"
 
 enum SSD1306PixelColor {
@@ -39,6 +40,13 @@ class SSD1306 {
     void clear();
     void draw_pixel(int16_t x, int16_t y, SSD1306PixelColor color);
 
+    inline uint8_t* buffer() { return buffer_; }
+    inline uint8_t width() const { return width_; }
+    inline uint8_t height() const { return height_; }
+    inline uint16_t buffer_len() const {
+        return width_ * ((height_ + 7) / 8);
+    }
+
     private:
     void send_init_commands();
 
@@ -54,8 +62,4 @@ class SSD1306 {
     uint8_t cs_pin_;  // chip select (keep low)
     uint8_t dc_pin_;  // data command pin (used to differentiate commands vs screen buffer)
     uint8_t rst_pin_;  // reset (keep high)
-
-    inline uint16_t buffer_len() const {
-        return width_ * ((height_ + 7) / 8);
-    }
 };
