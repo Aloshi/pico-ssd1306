@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cmake",
+			"label": "CMake: build",
+			"command": "build",
+			"targets": [
+				"all"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		},
+		{
+			"label": "Upload to pico",
+			"command": "picotool",
+			"args": ["load", "build/pico-ssd1306.uf2", "-f"],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Build & Upload",
+			"dependsOn": ["CMake: build", "Upload to pico"],
+			"dependsOrder": "sequence",
+			"group": {
+				"isDefault": true,
+				"kind": "build"
+			}
+		}
+	]
+}
